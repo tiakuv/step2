@@ -1,7 +1,7 @@
 import json
 from flask import Flask, render_template
 from random import sample
-#from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm
 
 app = Flask(__name__)
 app.config.from_object('config')
