@@ -63,7 +63,7 @@ def res_req():
     with open("request.json", "a", encoding="utf-8") as f:
         json.dump({"goal": goal, "time": time, "name": name, "phone": phone}, f, indent=2, ensure_ascii=False)
 
-    return render_template("request_done.html", goal=goal, time=time, name=name, phone=phone)
+    return render_template("request_done.html", goal=goals[goal], time=time, name=name, phone=phone)
 
 @app.route('/booking/<id>/<day>/<time>')
 def book_form(id, day, time):
