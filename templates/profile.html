@@ -11,7 +11,7 @@
             <section class="teacher=info">
 
               <h1 class="h2">{{ teacher.name }}</h1>
-              <p>{% for goal in teacher.goals %}<span class="badge badge-secondary mr-2">{{ goal }}</span>{% endfor %}Рейтинг: {{ teacher.rating }} Ставка: {{ teacher.price }} руб./час</p>
+              <p>{% for goal in teacher.goals %}<a class="badge badge-secondary mr-2" href="/goals/{{ goal }}">{{ goals[goal] }}</a>{% endfor %}Рейтинг: {{ teacher.rating }} Ставка: {{ teacher.price }} руб./час</p>
               <p>{{ teacher.about }}</p>
 
             </section>
@@ -19,12 +19,16 @@
             <section class="available">
 
               <h4 class="mb-4 mt-5">Записаться на пробный урок</h4>
-              {% for day in teacher.free %}
-              <h6 class="mt-4">{{ day }}</h6>
-              <a href="#" class="btn btn-outline-success mr-2">+++++++++</a>
+              {% for name_day, day in teacher.free.items() %}
+              <h6 class="mt-4">{{ days[name_day] }}</h6>
+                {% if True not in day.values() %}
+                <p>Нет свободных уроков</p>
+                {% else %}
+                  {% for time, boolean in day.items() %}
+                    {% if boolean==True %}<a href="/booking/{{ teacher.id }}/{{ name_day }}/{{ time }}" class="btn btn-outline-success mr-1">{{ time }}</a>{% endif %}
+                  {% endfor %}
+                {% endif %}
               {% endfor %}
-
-              <p>Нет свободных уроков</p>
 
             </section>
 
