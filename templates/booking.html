@@ -4,7 +4,7 @@
 
     <div class="row mt-5">
       <div class="col-10 col-md-6 offset-1 offset-md-3 mb-3">
-        <form action="booking_done.html" class="card mb-3">
+        <form action="/booking_done/" class="card mb-3" method="POST">
           <div class="card-body text-center pt-5">
             <img src="{{ teacher.picture }}" class="mb-3" width="95" alt="">
             <h2 class="h5 card-title mt-2 mb-2">{{ teacher.name }}</h2>
@@ -13,17 +13,12 @@
           </div>
           <hr />
           <div class="card-body mx-3">
-              <div class="row">
-                  <input class="form-control" type="hidden" name="clientWeekday" value={{ day }}>
-                  <input class="form-control" type="hidden" name="clientTime" value="12:00">
-                  <input class="form-control" type="hidden" name="clientTeacher" value="10">
-              </div>
-
         <div class="card-body mx-3">
-          <label class="mb-1 mt-2" type="hidden">{{ form.name.label }}</label>
+          <label class="mb-1 mt-2">{{ form.name.label }}</label>
           {{ form.name(class="form-control") }}
           <label class="mb-1 mt-2">{{ form.phone.label }}</label>
           {{ form.phone(class="form-control") }}
+            <input class="form-control" type="hidden" value={{ day }}>
           <input type="submit" class="btn btn-primary mt-4 mb-2" value="Записаться на пробный урок">
         </div>
           </div>

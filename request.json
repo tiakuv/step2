@@ -38,4 +38,14 @@
   "time": "2",
   "name": "Татьяна",
   "phone": "aaa"
+}{
+  "goal": "study",
+  "time": "5",
+  "name": "Татьяна",
+  "phone": "kk"
+}{
+  "goal": null,
+  "time": null,
+  "name": "Татьяна",
+  "phone": "8 (911) 120-76-35"
 }
