@@ -12,13 +12,16 @@
             <p class="my-1">{{ days[day] }}, {{ time }}</p>
           </div>
           <hr />
-          <div class="card-body mx-3">
         <div class="card-body mx-3">
+          <div class="row">
+            <input class="form-control" type="hidden" name="clientWeekday" value="{{ day }}">
+            <input class="form-control" type="hidden" name="clientTime" value="{{ time }}">
+            <input class="form-control" type="hidden" name="clientTeacher" value="{{ teacher.id }}">
+          </div>
           <label class="mb-1 mt-2">{{ form.name.label }}</label>
           {{ form.name(class="form-control") }}
           <label class="mb-1 mt-2">{{ form.phone.label }}</label>
           {{ form.phone(class="form-control") }}
-            <input class="form-control" type="hidden" value={{ day }}>
           <input type="submit" class="btn btn-primary mt-4 mb-2" value="Записаться на пробный урок">
         </div>
           </div>

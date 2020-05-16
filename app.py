@@ -1,10 +1,10 @@
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from random import sample
 from flask_wtf import FlaskForm
 from wtforms import StringField, RadioField
 from wtforms.validators import InputRequired, Email
-import pprint
+import os
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -14,6 +14,28 @@ with open("teachers.json", "r", encoding="utf-8") as f:
 
 with open("goals.json", "r", encoding="utf-8") as f:
     goals = json.load(f)
+
+def writetoFile(filename, str_dict):
+    with open(f"{filename}", 'r+', encoding="utf-8") as file:
+        content = json.load(file)
+    content.append(str_dict)
+    with open(f"{filename}", 'w', encoding="utf-8") as file:
+        json.dump(content, file, indent=2, ensure_ascii=False)
+
+def read_json(filename):
+    file_exists = os.path.isfile(f"/data/{filename}")
+    print(file_exists)
+    if not os.path.isfile(f"/data/{filename}"):
+        os.mknod(f"/data/{filename}")
+        with open(f"/data/{filename}", 'w+', encoding="utf-8") as file:
+            json.dump([], file)
+    with open(f"/data/{filename}", 'r', encoding="utf-8") as file:
+        content = json.load(file)
+    return content
+
+def write_json(filename, content):
+    with open(f"/data/{filename}", 'w+', encoding="utf-8") as file:
+        json.dump(content, file, indent=2, ensure_ascii=False)
 
 days = {"mon": "Понедельник",
         "tue": "Вторник",
@@ -33,7 +55,6 @@ class RequestForm(FlaskForm):
 
 
 class BookingForm(FlaskForm):
-
     time = StringField()
     day = StringField()
     prepod = StringField()
@@ -103,13 +124,25 @@ def book_form(id, day, time):
 
 @app.route('/booking_done/', methods=["POST"])
 def res_book():
-    form = BookingForm()
+    if request.method == "POST":
+        form = BookingForm()
+        name = form.name.data
+        phone = form.phone.data
+        day = request.form["clientWeekday"]
+        time = request.form["clientTime"]
+        id = request.form["clientTeacher"]
 
-    name = form.name.data
-    phone = form.phone.data
+        str = {"name": name, "phone": phone, "id": id, "day": day, "time": time}
+        content = read_json("booking.json")
+        content.append(str)
+        write_json("booking.json",content)
 
-
-    return render_template("booking_done.html", name=name, phone=phone)
+        return render_template("booking_done.html",
+                               name=name, phone=phone,
+                               day=days[day], time=time)
 
 
 app.run('localhost', 8000)
+
+
+
