@@ -143,4 +143,6 @@ def res_book():
                            day_name=days[day], time=time)
 
 
-app.run('localhost', 8000)
+#app.run('localhost', 8000)
+if __name__ == '__main__':
+    app.run()
