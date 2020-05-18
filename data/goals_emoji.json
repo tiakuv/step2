@@ -1,8 +1,8 @@
 {
-  "travel": {"name" : "Для путешествий", "icon" : "⛱⛱⛱"},
+  "travel": {"name" : "Для путешествий", "icon" : "⛱"},
   "study": {"name" : "Для учебы", "icon" : "\uD83D\uDCDA"},
   "work": {"name" : "Для работы", "icon" : "\uD83C\uDFA4"},
-  "relocate": {"name" : "Для переезда", "icon" : "⛱⛱⛱⛱⛱⛱\uD83D\uDE9C"},
+  "relocate": {"name" : "Для переезда", "icon" : "\uD83D\uDE9C"},
   "program": {"name" : "Для программирования", "icon" : "\uD83D\uDC68\u200D\uD83D\uDCBB"}
 }
 

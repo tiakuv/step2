@@ -15,7 +15,7 @@
               <p>Какая цель занятий?</p>
                 {% for goal in form.goal %}
               <div class="form-check ">
-                {{ goal(class="form-check-input") }}
+                {{ goal(class="form-check-input", required="required") }}
                 {{ goal.label(class="form-check-label") }}
               </div>
               {% endfor %}
@@ -24,7 +24,7 @@
               <p>Сколько времени есть?</p>
               {% for time in form.time %}
               <div class="form-check">
-                {{ time(class="form-check-input") }}
+                {{ time(class="form-check-input", required="required") }}
                 {{ time.label(class="form-check-label") }}
               </div>
               {% endfor %}
